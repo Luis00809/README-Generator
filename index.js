@@ -63,17 +63,83 @@ inquirer.prompt([
         message: 'Would you like to include any tests? If no, type N/A',
         name: 'test'
     }
-]) .then ((Response) => {
-    let userTitle = inquirer.title;
-    let userDescrip = inquirer.description;
-    let installation = inquirer.install;
-    let userUsage = inquirer.usage;
-    let credits = inquirer.credit;
-    let userlicense = inquirer.license;
-    let contributions = inquirer.contribute;
-    let userGithub = inquirer.userName;
-    let userGitLink = inquirer.userLink;
-    let userEmail = inquirer.email;
-    let test = inquirer.test;
+]) .then ((response) => {
+    // let userTitle = inquirer.title;
+    // let userDescrip = inquirer.description;
+    // let installation = inquirer.install;
+    // let userUsage = inquirer.usage;
+    // let credits = inquirer.credit;
+    // let userlicense = inquirer.license;
+    // let contributions = inquirer.contribute;
+    // let userGithub = inquirer.userName;
+    // let userGitLink = inquirer.userLink;
+    // let userEmail = inquirer.email;
+    // let test = inquirer.test;
+    let readmeContent = template(
+        response.title,
+        response.description,
+        response.install,
+        response.usage,
+        response.credit,
+        response.license,
+        response.contribute,
+        response.userName,
+        response.userLink,
+        response.email,
+        response.test
+        );
 
+        fs.writeFile('UserREADME.md',readmeContent, (err) => 
+            err ? console.error(err) : console.log('Success'))
 })
+
+function template(title, description,install,usage,credit,license,contribute,userName,userLink,email,test){
+   return `# ${title}
+
+   ## Description
+   
+   ${description}
+   
+   ## Table of contents
+   
+   - [Installation](#installation)
+   - [Usage](#usage)
+   - [Credits](#credits)
+   - [License](#license)
+   - [Contribute](#how-to-contribute)
+   
+   
+   ## Installation
+   ${install}
+   
+   ## Usage
+   
+  ${usage}
+   
+   screenshot from user (will need to store img in a assets/image folder)
+   
+   ![alt text](file path)
+   
+   ## Credits
+   
+    ${credit}
+
+   ## License 
+   
+    ${license}
+
+   ## Badges
+   need to look up
+   
+   ## How to Contribute
+   ${contribute}
+   
+   Contact me at: ${userName}
+   ${userLink}
+   
+   You can also reach me at ${email}
+   
+   ## Tests
+   
+   ${test}`
+}
