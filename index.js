@@ -1,6 +1,9 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
+let LicenseToken= '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'
+let licenseDescription = '';
+
 inquirer.prompt([
     {
         type: 'input',
@@ -21,7 +24,16 @@ inquirer.prompt([
         type: 'input',
         message: 'How do you use your application?',
         name: 'usage'
-        // need to add in getting a pic (png) and the alt text for it
+    },
+    {
+        type: 'input',
+        message: 'Please include a screenshot of your project',
+        name: 'image'
+    },
+    {
+        type: 'input',
+        message: 'Give an alt text for your image',
+        name: 'altText'
     },
     {
         type: 'input',
@@ -32,11 +44,12 @@ inquirer.prompt([
         type: 'list',
         message: 'Which license would you like to use:',
         name: 'license',
-        choices: ['Apache License 2.0', 'GNU General public License v3.0',
-                    'MIT License', 'BSD 2-Clause "Simplified" License',
-                    'BSD 3-Clause "New" or "Revised" license', 'Boost Sofware license 1.0', 'Creative Commons Zero 1.0', 
-                    'Eclipse Public License 2.0', 'GNU General Public License v3.0','GNU General Public License v2.0','GNU Lesser General Public License v2.1',
-                    'Mozilla public License 2.0', 'The Unilicense']
+        choices: [  'apache-2.0', 'gpl-3.0',
+                    'mit', 'bsd-2-clause',
+                    'bsd-3-clause', 'bsl-1.0', 'cc0-1.0', 
+                    'epl-2.0','lgpl-2.1',
+                    'mpl-2.0', 'unlicense'
+                ]
     },
     {
         type: 'input',
@@ -64,22 +77,19 @@ inquirer.prompt([
         name: 'test'
     }
 ]) .then ((response) => {
-    // let userTitle = inquirer.title;
-    // let userDescrip = inquirer.description;
-    // let installation = inquirer.install;
-    // let userUsage = inquirer.usage;
-    // let credits = inquirer.credit;
-    // let userlicense = inquirer.license;
-    // let contributions = inquirer.contribute;
-    // let userGithub = inquirer.userName;
-    // let userGitLink = inquirer.userLink;
-    // let userEmail = inquirer.email;
-    // let test = inquirer.test;
+    let imagePath = response.image;
+    let imageDesination = 'assets/images/' + imagePath.split('/').pop();
+
+    fs.appendFile(imagePath,imageDesination, (err) => 
+    err ? console.error(err) : console.log('Got the image!'));
+
     let readmeContent = template(
         response.title,
         response.description,
         response.install,
         response.usage,
+        response.image,
+        response.altText,
         response.credit,
         response.license,
         response.contribute,
@@ -88,12 +98,18 @@ inquirer.prompt([
         response.email,
         response.test
         );
+        
+        // gets the user's license input and creates a file of that license
+        let licenseToGenerate = response.license; 
+        getLicense(licenseToGenerate);
 
+
+        // generates the README file with the user's input
         fs.writeFile('UserREADME.md',readmeContent, (err) => 
             err ? console.error(err) : console.log('Success'))
 })
 
-function template(title, description,install,usage,credit,license,contribute,userName,userLink,email,test){
+function template(title, description,install,usage,image,altText,credit,license,contribute,userName,userLink,email,test){
    return `# ${title}
 
    ## Description
@@ -116,7 +132,7 @@ function template(title, description,install,usage,credit,license,contribute,use
    
   ${usage}
    
-   screenshot from user (will need to store img in a assets/image folder)
+   ${image}
    
    ![alt text](file path)
    
@@ -126,16 +142,17 @@ function template(title, description,install,usage,credit,license,contribute,use
 
    ## License 
    
-    ${license}
+    This project is licensed under the terms of the ${license}
 
+   DESCRIPTION: ${licenseDescription}
+   
    ## Badges
    need to look up
    
    ## How to Contribute
    ${contribute}
    
-   Contact me at: ${userName}
-   ${userLink}
+   Contact me at: [${userName}](${userLink})
    
    You can also reach me at ${email}
    
@@ -143,3 +160,26 @@ function template(title, description,install,usage,credit,license,contribute,use
    
    ${test}`
 }
+
+const getLicense = (licenseToGenerate) => {
+
+    const { Octokit } = require("@octokit/rest");
+    const octokit = new Octokit({
+        auth: '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'
+    });
+
+    octokit.rest.licenses.get({
+        license: licenseToGenerate,
+        description: 'description'
+    })
+    .then(response => {
+    //   console.log(response.data);
+        licenseDescription = response.data.description
+        fs.writeFile('License.txt',response.data.body, (err) => 
+        err ? console.error(err) : console.log('Got the file'));
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+console.log(licenseDescription)

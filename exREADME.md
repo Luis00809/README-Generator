@@ -34,8 +34,7 @@ need to look up
 ## How to Contribute
 User's explanation
 
-Contact me at: users github account enclosed in a link
-
+Contact me at: [Luis00809](https://github.com/Luis00809)
 You can also reach me at (users email)
 
 ## Tests
