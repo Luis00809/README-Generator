@@ -2,7 +2,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 // need to get a new access token and hide token when commiting
-let LicenseToken= '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'
+let LicenseToken= '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'
 
 inquirer.prompt([
     {
@@ -24,16 +24,6 @@ inquirer.prompt([
         type: 'input',
         message: 'How do you use your application?',
         name: 'usage'
-    },
-    {
-        type: 'input',
-        message: 'Please include a screenshot of your project',
-        name: 'image'
-    },
-    {
-        type: 'input',
-        message: 'Give an alt text for your image',
-        name: 'altText'
     },
     {
         type: 'input',
@@ -78,9 +68,6 @@ inquirer.prompt([
     }
 ]) .then ((response) => {
 
-    // fs.writeFile('image.png',response.image, (err) => 
-    // err ? console.error(err) : console.log('Got the image!'));
-
     let licenseToGenerate = response.license;
     getBadge(licenseToGenerate);
 
@@ -89,8 +76,6 @@ inquirer.prompt([
         response.description,
         response.install,
         response.usage,
-        response.image,
-        response.altText,
         response.credit,
         response.license,
         response.contribute,
@@ -102,8 +87,8 @@ inquirer.prompt([
         
         // gets the user's license input and creates a file of that license
         
-        // let licenseToGenerate = response.license; 
-        // getLicense(licenseToGenerate);
+        
+        getLicense(licenseToGenerate);
 
 
         // generates the README file with the user's input
@@ -111,7 +96,7 @@ inquirer.prompt([
             err ? console.error(err) : console.log('Success'))
 })
 
-function template(title, description,install,usage,image,altText,credit,license,contribute,userName,userLink,email,test){
+function template(title, description,install,usage,credit,license,contribute,userName,userLink,email,test){
    return `${badge}
    # ${title}
 
@@ -164,28 +149,28 @@ function template(title, description,install,usage,image,altText,credit,license,
    ${test}`
 }
 
-// const getLicense = (licenseToGenerate) => {
+const getLicense = (licenseToGenerate) => {
 
-//     const { Octokit } = require("@octokit/rest");
-//     const octokit = new Octokit({
-//         auth: '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'
-//     });
+    const { Octokit } = require("@octokit/rest");
+    const octokit = new Octokit({
+        auth: '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'
+    });
 
-//     octokit.rest.licenses.get({
-//         license: licenseToGenerate,
-//         description: 'description'
-//     })
-//     .then(response => {
-//     //   console.log(response.data);
-//         licenseDescription = response.data.description
-//         fs.writeFile('License.txt',response.data.body, (err) => 
-//         err ? console.error(err) : console.log('Got the file'));
-//     })
-//     .catch(error => {
-//       console.error(error);
-//     });
-//  };
-// console.log(licenseDescription)
+    octokit.rest.licenses.get({
+        license: licenseToGenerate,
+        description: 'description'
+    })
+    .then(response => {
+    //   console.log(response.data);
+        licenseDescription = response.data.description
+        fs.writeFile('License.txt',response.data.body, (err) => 
+        err ? console.error(err) : console.log('Got the file'));
+    })
+    .catch(error => {
+      console.error(error);
+    });
+ };
+
 
 let badge = '';
 let getBadge = (license) => {
