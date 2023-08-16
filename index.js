@@ -1,9 +1,6 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 
-// need to get a new access token and hide token when commiting
-let LicenseToken= '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'
-
 inquirer.prompt([
     {
         type: 'input',
@@ -120,7 +117,7 @@ function template(title, description,install,usage,credit,license,contribute,use
    
   ${usage}
    
-   ${image}
+  
    
    ![alt text](file path)
    
@@ -153,7 +150,7 @@ const getLicense = (licenseToGenerate) => {
 
     const { Octokit } = require("@octokit/rest");
     const octokit = new Octokit({
-        auth: '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'
+        auth: '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'
     });
 
     octokit.rest.licenses.get({
