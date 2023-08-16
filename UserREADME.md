@@ -1,9 +1,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-   # title
+   # cool
 
    ## Description
    
-   idk
+   coo
    
    ## Table of contents
    
@@ -15,19 +15,19 @@
    
    
    ## Installation
-   no
+   c
    
    ## Usage
    
-  input
+  c
    
-   no
+  
    
    ![alt text](file path)
    
    ## Credits
    
-    me
+    c
 
    ## License 
    
@@ -39,12 +39,12 @@
    need to look up
    
    ## How to Contribute
-   no
+   c
    
-   Contact me at: []()
+   Contact me at: [c](c)
    
-   You can also reach me at 
+   You can also reach me at c
    
    ## Tests
    
-   
+   c
