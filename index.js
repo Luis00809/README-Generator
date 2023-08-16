@@ -150,7 +150,7 @@ const getLicense = (licenseToGenerate) => {
 
     const { Octokit } = require("@octokit/rest");
     const octokit = new Octokit({
-        auth: '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'
+        auth: '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'
     });
 
     octokit.rest.licenses.get({
