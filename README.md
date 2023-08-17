@@ -26,6 +26,7 @@
    
   ![Answering prompts](images/ReadmeQuestionList.png)
    
+   Here is an example of a walkthrough video: https://drive.google.com/file/d/1QZPOlLph_K-2rITk_Nf6wnX-2D9eKv2i/view
    ## Credits
    
     I want to give credit to lukas-h as I used the links to licnese badges  via https://gist.github.com/lukas-h/2a5d00690736b4c3a7ba  I also want to give credit to the inquirer package as it allowed me to get user input. 
@@ -42,6 +43,7 @@
    
    You can also reach me at davidcarvajal008@gmail.com
    
+
    ## Tests
    
    N/A
