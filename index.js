@@ -82,12 +82,6 @@ inquirer.prompt([
         response.test
         );
         
-        // gets the user's license input and creates a file of that license
-        
-        
-        getLicense(licenseToGenerate);
-
-
         // generates the README file with the user's input
         fs.writeFile('UserREADME.md',readmeContent, (err) => 
             err ? console.error(err) : console.log('Success'))
@@ -119,7 +113,7 @@ function template(title, description,install,usage,credit,license,contribute,use
    
   
    
-   ![alt text](file path)
+    ![alt text](file path)
    
    ## Credits
    
@@ -127,12 +121,8 @@ function template(title, description,install,usage,credit,license,contribute,use
 
    ## License 
    
-    This project is licensed under the terms of the ${license}
+    This project is licensed under the terms of ${license}
 
-   DESCRIPTION: 
-   
-   ## Badges
-   need to look up
    
    ## How to Contribute
    ${contribute}
@@ -146,27 +136,7 @@ function template(title, description,install,usage,credit,license,contribute,use
    ${test}`
 }
 
-const getLicense = (licenseToGenerate) => {
 
-    const { Octokit } = require("@octokit/rest");
-    const octokit = new Octokit({
-        auth: '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'
-    });
-
-    octokit.rest.licenses.get({
-        license: licenseToGenerate,
-        description: 'description'
-    })
-    .then(response => {
-    //   console.log(response.data);
-        licenseDescription = response.data.description
-        fs.writeFile('License.txt',response.data.body, (err) => 
-        err ? console.error(err) : console.log('Got the file'));
-    })
-    .catch(error => {
-      console.error(error);
-    });
- };
 
 
 let badge = '';
