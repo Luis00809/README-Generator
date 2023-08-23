@@ -50,11 +50,6 @@ inquirer.prompt([
     },
     {
         type: 'input',
-        message: 'What is your Github link to your profile',
-        name: 'userLink'
-    },
-    {
-        type: 'input',
         message: 'What is your email?',
         name: 'email'
     }, 
@@ -102,6 +97,8 @@ function template(title, description,install,usage,credit,license,contribute,use
    - [Credits](#credits)
    - [License](#license)
    - [Contribute](#how-to-contribute)
+   - [Questions](#questions)
+   - [Tests](#tests)
    
    
    ## Installation
@@ -113,7 +110,7 @@ function template(title, description,install,usage,credit,license,contribute,use
    
   
    
-    ![alt text](file path)
+![alt text](file path)
    
    ## Credits
    
@@ -127,10 +124,17 @@ function template(title, description,install,usage,credit,license,contribute,use
    ## How to Contribute
    ${contribute}
    
-   Contact me at: [${userName}](${userLink})
    
-   You can also reach me at ${email}
+   ## Questions
+    
+If you have any questions please contact me at: 
    
+${email}
+   
+Find me on github at: [${userName}](https://github.com/${userName})
+   
+   
+
    ## Tests
    
    ${test}`

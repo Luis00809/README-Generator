@@ -1,5 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-   # My title
+   # Example
 
    ## Description
    
@@ -12,22 +12,24 @@
    - [Credits](#credits)
    - [License](#license)
    - [Contribute](#how-to-contribute)
+   - [Questions](#questions)
+   - [Tests](#tests)
    
    
    ## Installation
-   how to install
+   none
    
    ## Usage
    
-  blah blah blah
+  answer questions
    
   
    
-    ![alt text](file path)
+![alt text](file path)
    
    ## Credits
    
-    myself
+    n/a
 
    ## License 
    
@@ -35,12 +37,19 @@
 
    
    ## How to Contribute
-   by comments
+   reach out to me
    
-   Contact me at: [Luis00809](https://github.com/Luis00809)
    
-   You can also reach me at davidcarvajal008@gmail.com
+   ## Questions
+    
+If you have any questions please contact me at: 
    
+davidcarvajal008@gmail.com
+   
+Find me on github at: [Luis00809](https://github.com/Luis00809)
+   
+   
+
    ## Tests
    
    N/A
